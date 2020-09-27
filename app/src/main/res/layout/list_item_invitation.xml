@@ -20,19 +20,112 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/layout_margin_8"
+        android:background="@drawable/card_bg"
+        android:elevation="@dimen/layout_margin_8"
+        android:padding="@dimen/layout_margin_16">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:set_picture="@{invitation.picture.large}" />
 
         <TextView
             android:id="@+id/text_product_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/layout_margin_8"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{invitation.name.first}"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/text_size_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            app:set_name="@{invitation.name}" />
 
+        <TextView
+            android:id="@+id/text_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_4"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_product_name"
+            app:set_age="@{invitation.dob}" />
+
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_age"
+            app:set_address="@{invitation.location}" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_decline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_16"
+            android:backgroundTint="@color/colorReject"
+            android:onClick="@{() -> listener.onClick(invitation, position, false)}"
+            android:src="@drawable/ic_baseline_clear_24"
+            app:layout_constraintEnd_toEndOf="@id/guideline_start"
+            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            app:layout_constraintTop_toBottomOf="@+id/text_address" />
+
+        <TextView
+            android:id="@+id/text_decline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_decline"
+            app:layout_constraintEnd_toEndOf="@id/fab_decline"
+            app:layout_constraintStart_toStartOf="@id/fab_decline"
+            app:layout_constraintTop_toBottomOf="@+id/fab_decline" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/layout_margin_16"
+            android:onClick="@{() -> listener.onClick(invitation, position, true)}"
+            android:src="@drawable/ic_baseline_check_24"
+            app:layout_constraintEnd_toEndOf="@id/guideline_end"
+            app:layout_constraintStart_toStartOf="@id/guideline_end"
+            app:layout_constraintTop_toBottomOf="@+id/text_address" />
+
+        <TextView
+            android:id="@+id/text_accept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/text_accept"
+            app:layout_constraintEnd_toEndOf="@id/fab_accept"
+            app:layout_constraintStart_toStartOf="@id/fab_accept"
+            app:layout_constraintTop_toBottomOf="@+id/fab_accept" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

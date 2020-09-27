@@ -1,6 +1,7 @@
 package com.assignment.shaadi.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -45,9 +46,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRecyclerViewAdapter() {
-        adapter = InvitationListAdapter(invitationList, InvitationListener() { _, _, _ ->
-
-        })
+        adapter = InvitationListAdapter(
+            invitationList,
+            InvitationListener() { invitation, position, accept ->
+                Log.d("Click", invitation.name.first + " " + position + " " + accept)
+            })
         binding.invitationList.adapter = adapter
     }
 

@@ -2,4 +2,6 @@
     <string name="app_name">Shaadi</string>
     <string name="error">Something went wrong!</string>
     <string name="try_again">Try again!</string>
+    <string name="text_decline">Decline</string>
+    <string name="text_accept">Accept</string>
 </resources>
