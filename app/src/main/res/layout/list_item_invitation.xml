@@ -16,6 +16,8 @@
             name="listener"
             type="com.assignment.shaadi.adapters.InvitationListener" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,18 +93,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin_16"
             android:backgroundTint="@color/colorReject"
+            android:enabled="@{invitation.isAccepted() == null}"
             android:onClick="@{() -> listener.onClick(invitation, position, false)}"
             android:src="@drawable/ic_baseline_clear_24"
-            app:layout_constraintEnd_toEndOf="@id/guideline_start"
-            app:layout_constraintStart_toStartOf="@id/guideline_start"
+            android:visibility="@{invitation.isAccepted() != null &amp;&amp; invitation.isAccepted() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toStartOf="@+id/fab_accept"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_address" />
 
         <TextView
             android:id="@+id/text_decline"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/text_decline"
+            android:text="@{invitation.isAccepted() == null ? @string/text_decline : @string/text_declined}"
+            android:visibility="@{invitation.isAccepted() != null &amp;&amp; invitation.isAccepted() ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="@id/fab_decline"
             app:layout_constraintStart_toStartOf="@id/fab_decline"
             app:layout_constraintTop_toBottomOf="@+id/fab_decline" />
@@ -112,18 +117,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/layout_margin_16"
+            android:enabled="@{invitation.isAccepted() == null}"
             android:onClick="@{() -> listener.onClick(invitation, position, true)}"
             android:src="@drawable/ic_baseline_check_24"
-            app:layout_constraintEnd_toEndOf="@id/guideline_end"
-            app:layout_constraintStart_toStartOf="@id/guideline_end"
+            android:visibility="@{invitation.isAccepted() != null &amp;&amp; !invitation.isAccepted() ? View.GONE : View.VISIBLE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fab_decline"
             app:layout_constraintTop_toBottomOf="@+id/text_address" />
 
         <TextView
             android:id="@+id/text_accept"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@string/text_accept"
+            android:text="@{invitation.isAccepted() == null ? @string/text_accept : @string/text_accepted}"
+            android:visibility="@{invitation.isAccepted() != null &amp;&amp; !invitation.isAccepted() ? View.GONE : View.VISIBLE}"
             app:layout_constraintEnd_toEndOf="@id/fab_accept"
             app:layout_constraintStart_toStartOf="@id/fab_accept"
             app:layout_constraintTop_toBottomOf="@+id/fab_accept" />

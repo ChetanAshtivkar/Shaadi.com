@@ -1,10 +1,7 @@
 package com.assignment.shaadi.data.database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.assignment.shaadi.data.database.models.Invitation
 
 @Dao
@@ -23,8 +20,10 @@ interface InvitationDao {
     fun getPaged(limit: Int, offset: Int): List<Invitation>
 
 
-
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertAll(picture: List<Invitation>)
+
+    @Update
+    fun updateInvitation(invitation: Invitation)
 
 }

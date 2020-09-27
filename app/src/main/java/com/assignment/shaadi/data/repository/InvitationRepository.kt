@@ -7,6 +7,9 @@ import com.assignment.shaadi.data.InvitationDataSourceFactory
 import com.assignment.shaadi.data.database.InvitationDao
 import com.assignment.shaadi.data.database.models.Invitation
 import com.assignment.shaadi.data.network.APIService
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * Created by Chetan on 26/09/20.
@@ -32,5 +35,10 @@ class InvitationRepository(
             .build()
     }
 
+    fun updateInvitation(invitation: Invitation) {
+        CoroutineScope(Dispatchers.IO).launch {
+            invitationDao.updateInvitation(invitation)
+        }
+    }
 }
 

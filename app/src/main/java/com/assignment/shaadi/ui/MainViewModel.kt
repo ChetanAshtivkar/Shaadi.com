@@ -2,6 +2,7 @@ package com.assignment.shaadi.ui
 
 import android.app.Application
 import androidx.lifecycle.ViewModel
+import com.assignment.shaadi.data.database.models.Invitation
 import com.assignment.shaadi.data.repository.InvitationRepository
 
 /**
@@ -25,4 +26,8 @@ class MainViewModel(
     }*/
 
     fun fetchPicturesFromServer() = repository.fetchPicturesFromServer()
+
+    fun updateInvitation(invitation: Invitation) {
+        repository.updateInvitation(invitation)
+    }
 }

@@ -15,7 +15,7 @@ data class Invitation(
     @Embedded @SerializedName("location") val location: Location,
     @Embedded @SerializedName("dob") val dob: Dob,
     @Embedded @SerializedName("picture") val picture: Picture,
-    val isAccepted: Boolean?
+    var isAccepted: Boolean? = null
 )
 
 data class Id(
